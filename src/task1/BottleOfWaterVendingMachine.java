@@ -1,2 +1,32 @@
-package task1;public class BottleOfWaterVendingMachine {
+package task1;
+
+import java.util.List;
+
+public class BottleOfWaterVendingMachine implements VendingMachine{
+    private final List<Product> productList;
+    public BottleOfWaterVendingMachine(List<Product> productList) {
+        this.productList = productList;
+    }
+
+    @Override
+    public Product getProduct(String name) {
+        for (Product product : productList) {
+            if (product.getName().equals(name)) {  // если имя совпадает
+                product.getPrice();
+                return product;
+            }
+        }
+        return null;
+    }
+
+    public BottleOfWater getProduct(String name, int volume) {
+        for (Product product : productList) {
+            if (product instanceof BottleOfWater) {
+                if (product.getName().equals(name)  && ((BottleOfWater) product).getVolume() == volume) {
+                    return (BottleOfWater) product;
+                }
+            }
+        }
+        return null;
+    }
 }
